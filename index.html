@@ -406,10 +406,14 @@ footer .hearts{font-size:22px;letter-spacing:4px}
    create a free Firebase project and fill in the config below,
    then set USE_FIREBASE = true. (Instructions in the README.)
    ========================================================= */
-const USE_FIREBASE = false;
+const USE_FIREBASE = true;
 const FIREBASE_CONFIG = {
-  // apiKey: "...", authDomain: "...", projectId: "...",
-  // storageBucket: "...", messagingSenderId: "...", appId: "..."
+  apiKey: "AIzaSyBREgn_JaBdt22Q7IsDgvGW8DcNovD8bIA",
+  authDomain: "nitya-birthday.firebaseapp.com",
+  projectId: "nitya-birthday",
+  storageBucket: "nitya-birthday.firebasestorage.app",
+  messagingSenderId: "377079794427",
+  appId: "1:377079794427:web:8496583a148512a5993e5e"
 };
 /* --- end config --- */
 
@@ -1278,8 +1282,8 @@ const FB={
   _db:null,
   async _init(){
     if(this._db) return;
-    const app=await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js');
-    const fs=await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js');
+    const app=await import('https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js');
+    const fs=await import('https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js');
     this._fs=fs; this._app=app.initializeApp(FIREBASE_CONFIG);
     this._db=fs.getFirestore(this._app);
   },
