@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#ffd6e7">
+<title>Nitya is One! 🎀</title>
+<style>
+/* ============================================================
+   NITYA'S FIRST BIRTHDAY — single-file site
+   Theme: baby pink, soft & wholesome, animal-filter photobooth
+   ============================================================ */
+:root{
+  --pink-50:#fff5f9;
+  --pink-100:#ffe4ef;
+  --pink-200:#ffd6e7;
+  --pink-300:#ffb8d4;
+  --pink-400:#ff97bf;
+  --rose:#e26a9a;
+  --plum:#7a4a63;
+  --cream:#fffaf6;
+  --ink:#5a3d4c;
+  --gold:#e8b04b;
+  --mint:#bfe6d4;
+  --shadow:0 10px 30px rgba(226,106,154,.18);
+  --shadow-sm:0 4px 14px rgba(226,106,154,.16);
+  --r:22px;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Quicksand",sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 15% 10%, #fff 0, transparent 40%),
+    radial-gradient(circle at 85% 5%, var(--pink-100) 0, transparent 45%),
+    linear-gradient(180deg,var(--pink-50),var(--cream));
+  min-height:100vh;
+  overflow-x:hidden;
+}
+h1,h2,h3{font-family:"Quicksand","Segoe UI",sans-serif;font-weight:700;letter-spacing:-.5px}
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&family=Fredoka:wght@500;600;700&display=swap');
+
+/* floating confetti dots background */
+.dots{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.dots span{position:absolute;border-radius:50%;opacity:.5;animation:float 14s linear infinite}
+@keyframes float{0%{transform:translateY(110vh) scale(.6);opacity:0}
+  10%{opacity:.6}90%{opacity:.5}100%{transform:translateY(-10vh) scale(1);opacity:0}}
+
+.wrap{position:relative;z-index:1;max-width:880px;margin:0 auto;padding:0 18px 60px}
+
+/* ---------- HERO ---------- */
+header.hero{text-align:center;padding:54px 16px 34px}
+.balloon-row{font-size:42px;letter-spacing:8px;margin-bottom:6px;animation:bob 4s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.hero .eyebrow{font-family:"Fredoka",sans-serif;text-transform:uppercase;letter-spacing:3px;
+  font-size:13px;color:var(--rose);font-weight:600}
+.hero h1{font-family:"Fredoka",sans-serif;font-size:clamp(44px,13vw,86px);line-height:.95;
+  margin:8px 0 4px;color:var(--rose);text-shadow:2px 3px 0 #fff,4px 6px 0 var(--pink-200)}
+.hero .turns{display:inline-block;background:var(--pink-300);color:#fff;font-family:"Fredoka",sans-serif;
+  font-weight:700;font-size:20px;padding:6px 22px;border-radius:40px;margin-top:8px;box-shadow:var(--shadow-sm)}
+.hero p.sub{max-width:440px;margin:18px auto 0;font-size:17px;line-height:1.55;color:var(--plum)}
+
+/* ---------- NAV chips ---------- */
+nav.chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:28px 0 8px}
+nav.chips a{font-family:"Fredoka",sans-serif;font-weight:500;text-decoration:none;color:var(--rose);
+  background:#fff;border:2px solid var(--pink-200);padding:9px 18px;border-radius:30px;font-size:15px;
+  box-shadow:var(--shadow-sm);transition:transform .15s,background .2s}
+nav.chips a:active{transform:scale(.94)}
+nav.chips a:hover{background:var(--pink-100)}
+
+/* ---------- generic section card ---------- */
+section{background:var(--cream);border-radius:var(--r);padding:30px 22px;margin:26px 0;
+  box-shadow:var(--shadow);border:1px solid #fff}
+section h2{font-family:"Fredoka",sans-serif;font-size:30px;color:var(--rose);margin:0 0 4px;
+  display:flex;align-items:center;gap:10px}
+section .lead{color:var(--plum);margin:0 0 22px;font-size:16px;line-height:1.5}
+
+.btn{font-family:"Fredoka",sans-serif;font-weight:600;border:none;cursor:pointer;font-size:16px;
+  padding:13px 24px;border-radius:40px;color:#fff;background:var(--rose);box-shadow:var(--shadow-sm);
+  transition:transform .15s,filter .2s}
+.btn:active{transform:scale(.95)}
+.btn:hover{filter:brightness(1.05)}
+.btn.ghost{background:#fff;color:var(--rose);border:2px solid var(--pink-300)}
+.btn.gold{background:var(--gold)}
+.btn-row{display:flex;flex-wrap:wrap;gap:12px}
+
+/* ================= PHOTOBOOTH ================= */
+.booth-stage{position:relative;background:#2a2030;border-radius:18px;overflow:hidden;aspect-ratio:3/4;
+  max-width:360px;margin:0 auto;box-shadow:inset 0 0 0 6px #fff,var(--shadow)}
+#bvideo{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  transform:scaleX(-1)} /* mirror like facetime */
+.booth-stage .placeholder{position:absolute;inset:0;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:8px;color:#fff;text-align:center;padding:20px}
+.booth-stage .placeholder .big{font-size:54px}
+.track-canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.filter-picker{display:flex;gap:8px;overflow-x:auto;padding:14px 2px 4px;-webkit-overflow-scrolling:touch}
+.filter-picker button{flex:0 0 auto;width:58px;height:58px;border-radius:16px;border:3px solid transparent;
+  background:#fff;font-size:28px;cursor:pointer;box-shadow:var(--shadow-sm);transition:transform .15s}
+.filter-picker button.on{border-color:var(--rose);transform:scale(1.08)}
+.filter-picker button:active{transform:scale(.9)}
+.booth-controls{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:14px}
+
+/* vintage strip output */
+.flash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;z-index:5}
+.flash.go{animation:flashAnim .45s ease-out}
+@keyframes flashAnim{0%{opacity:0}8%{opacity:.95}100%{opacity:0}}
+.strip-wrap{margin-top:24px;display:flex;flex-wrap:wrap;gap:22px;justify-content:center}
+.strip-card{display:flex;flex-direction:column;align-items:center;gap:12px;
+  animation:dropin .5s cubic-bezier(.2,.8,.3,1.2)}
+@keyframes dropin{from{opacity:0;transform:translateY(-16px) rotate(-3deg)}to{opacity:1;transform:none}}
+.strip-card img{width:200px;max-width:62vw;border-radius:8px;box-shadow:var(--shadow);
+  transform:rotate(-2deg);border:1px solid #fff}
+.strip-dl{text-decoration:none;font-size:14px;padding:10px 20px}
+
+/* ================= MUSIC ================= */
+.song-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:480px){.song-grid{grid-template-columns:1fr}}
+.song-card{font-family:inherit;text-align:center;cursor:pointer;border:none;
+  background:linear-gradient(160deg,#fff,var(--pink-100));border-radius:20px;padding:22px 16px;
+  box-shadow:var(--shadow-sm);transition:transform .15s;border:2px solid var(--pink-200)}
+.song-card:active{transform:scale(.96)}
+.song-card.playing{border-color:var(--rose);box-shadow:var(--shadow);animation:cardpulse 1.2s ease-in-out infinite}
+@keyframes cardpulse{0%,100%{transform:scale(1)}50%{transform:scale(1.025)}}
+.song-card .song-emoji{font-size:48px;animation:none}
+.song-card.playing .song-emoji{animation:wiggle .6s ease-in-out infinite}
+@keyframes wiggle{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
+.song-title{font-family:"Fredoka",sans-serif;font-weight:700;color:var(--rose);font-size:19px;margin-top:8px}
+.song-sub{color:var(--plum);font-size:14px;margin-top:2px}
+.song-play{margin-top:12px;font-family:"Fredoka",sans-serif;font-weight:600;color:#fff;
+  background:var(--rose);display:inline-block;padding:8px 18px;border-radius:30px;font-size:14px}
+.song-card.playing .song-play{background:var(--gold)}
+.song-now{text-align:center;font-family:"Fredoka",sans-serif;color:var(--rose);font-weight:600;
+  font-size:17px;margin-top:18px;min-height:24px}
+
+/* ================= GAMES ================= */
+.game-tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px}
+.game-tabs button{font-family:"Fredoka",sans-serif;font-weight:600;border:2px solid var(--pink-200);
+  background:#fff;color:var(--rose);padding:9px 16px;border-radius:30px;cursor:pointer;font-size:14px}
+.game-tabs button.on{background:var(--rose);color:#fff;border-color:var(--rose)}
+.game-panel{display:none}
+.game-panel.on{display:block}
+.game-stat{font-family:"Fredoka",sans-serif;color:var(--plum);margin-bottom:12px;font-size:15px}
+
+/* memory */
+.mem-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;max-width:360px;margin:0 auto}
+.mem-card{aspect-ratio:1;border-radius:14px;background:var(--pink-300);cursor:pointer;position:relative;
+  transform-style:preserve-3d;transition:transform .4s;font-size:30px}
+.mem-card .face{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  backface-visibility:hidden;border-radius:14px}
+.mem-card .front{background:var(--pink-300);color:#fff;font-size:26px}
+.mem-card .back{background:#fff;transform:rotateY(180deg);box-shadow:inset 0 0 0 3px var(--pink-200)}
+.mem-card.flip{transform:rotateY(180deg)}
+.mem-card.done{opacity:.55}
+
+/* balloons */
+.balloon-stage{position:relative;height:420px;background:
+  linear-gradient(180deg,#eaf6ff 0%,#fff6fb 70%,#fff 100%);
+  border-radius:18px;overflow:hidden;touch-action:manipulation;cursor:pointer}
+.balloon{position:absolute;bottom:-110px;cursor:pointer;user-select:none;
+  will-change:top;transition:none;display:flex;align-items:center;justify-content:center;
+  width:90px;height:90px;font-size:72px;line-height:1;text-align:center}
+.balloon .pop-burst{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  font-size:60px;opacity:0;pointer-events:none}
+.balloon.popped{animation:popped .35s ease-out forwards}
+@keyframes popped{0%{transform:scale(1)}40%{transform:scale(1.4)}100%{transform:scale(0);opacity:0}}
+.balloon.popped .balloon-face{opacity:0;transition:opacity .1s}
+.balloon.popped .pop-burst{animation:burst .35s ease-out forwards}
+@keyframes burst{0%{opacity:1;transform:scale(.4)}100%{opacity:0;transform:scale(1.6)}}
+.bal-namerow{margin-bottom:12px}
+.bal-namerow input{font-family:inherit;font-size:16px;border:2px solid var(--pink-200);
+  border-radius:14px;padding:11px 14px;width:100%;color:var(--ink);background:var(--pink-50)}
+.leaderboard{margin-top:22px;background:#fff;border-radius:18px;padding:18px 20px;
+  box-shadow:var(--shadow-sm);border:1px solid var(--pink-100)}
+.leaderboard h3{font-family:"Fredoka",sans-serif;color:var(--rose);font-size:20px;margin:0 0 12px;text-align:center}
+.leaderboard ol{list-style:none;margin:0;padding:0;counter-reset:rank}
+.leaderboard li{counter-increment:rank;display:flex;align-items:center;gap:12px;padding:9px 12px;
+  border-radius:12px;font-size:16px;margin-bottom:6px;background:var(--pink-50)}
+.leaderboard li:before{content:counter(rank);font-family:"Fredoka",sans-serif;font-weight:700;
+  color:#fff;background:var(--pink-300);width:28px;height:28px;border-radius:50%;display:flex;
+  align-items:center;justify-content:center;font-size:14px;flex:0 0 auto}
+.leaderboard li:nth-child(1):before{background:var(--gold)}
+.leaderboard li:nth-child(2):before{background:#b9b9c9}
+.leaderboard li:nth-child(3):before{background:#d49a6a}
+.leaderboard li .lb-name{font-family:"Fredoka",sans-serif;font-weight:600;color:var(--ink);flex:1;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.leaderboard li .lb-score{font-family:"Fredoka",sans-serif;font-weight:700;color:var(--rose)}
+.leaderboard li.you{outline:2px solid var(--rose)}
+.lb-empty{color:var(--plum);font-style:italic;text-align:center;padding:6px}
+
+/* find toys */
+.find-stage{position:relative;height:360px;background:
+  radial-gradient(circle at 30% 30%,var(--mint),transparent 50%),
+  radial-gradient(circle at 70% 70%,var(--pink-200),transparent 50%),var(--pink-50);
+  border-radius:18px;overflow:hidden}
+.toy{position:absolute;font-size:30px;cursor:pointer;transition:transform .15s}
+.toy:active{transform:scale(.8)}
+.toy.found{opacity:.25;pointer-events:none}
+.find-targets{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.find-targets .tgt{background:#fff;border:2px solid var(--pink-200);border-radius:14px;padding:6px 12px;
+  font-size:22px;position:relative}
+.find-targets .tgt.got:after{content:"✓";position:absolute;top:-8px;right:-8px;background:var(--mint);
+  color:#2a7a5a;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;
+  justify-content:center;font-size:13px;font-weight:700}
+
+.win-msg{text-align:center;font-family:"Fredoka",sans-serif;color:var(--rose);font-size:20px;
+  margin-top:14px;font-weight:600;min-height:26px}
+
+/* ================= POSTCARDS ================= */
+.pc-form{display:grid;gap:12px;background:#fff;border:2px dashed var(--pink-300);border-radius:18px;
+  padding:18px;margin-bottom:24px}
+.pc-form input,.pc-form textarea{font-family:inherit;font-size:16px;border:2px solid var(--pink-200);
+  border-radius:14px;padding:12px 14px;width:100%;color:var(--ink);background:var(--pink-50)}
+.pc-form textarea{resize:vertical;min-height:74px}
+.pc-form label.file{display:flex;align-items:center;gap:10px;font-family:"Fredoka",sans-serif;
+  color:var(--rose);cursor:pointer;font-weight:600}
+.pc-form input[type=file]{display:none}
+.pc-preview{max-width:120px;border-radius:12px;display:none}
+.pc-grid{column-count:2;column-gap:14px}
+@media(min-width:620px){.pc-grid{column-count:3}}
+.postcard{break-inside:avoid;background:#fff;border-radius:16px;padding:12px;margin-bottom:14px;
+  box-shadow:var(--shadow-sm);border:1px solid var(--pink-100);transform:rotate(var(--rot,0deg));
+  position:relative}
+.postcard .pc-del{position:absolute;top:6px;right:6px;width:28px;height:28px;border:none;
+  border-radius:50%;background:rgba(255,255,255,.92);color:var(--rose);font-size:18px;line-height:1;
+  font-weight:700;cursor:pointer;box-shadow:var(--shadow-sm);display:flex;align-items:center;
+  justify-content:center;padding:0;opacity:.65;transition:opacity .15s,transform .15s;z-index:2}
+.postcard .pc-del:hover{opacity:1;background:var(--rose);color:#fff}
+.postcard .pc-del:active{transform:scale(.88)}
+.postcard img{width:100%;border-radius:10px;margin-bottom:8px;display:block}
+.postcard .msg{font-size:15px;line-height:1.4;color:var(--ink)}
+.postcard .from{font-family:"Fredoka",sans-serif;color:var(--rose);font-weight:600;font-size:14px;
+  margin-top:8px}
+.pc-empty{color:var(--plum);font-style:italic;text-align:center;padding:20px}
+.note{font-size:13px;color:var(--plum);background:var(--pink-100);border-radius:12px;padding:10px 14px;
+  margin-top:6px}
+
+footer{text-align:center;color:var(--rose);font-family:"Fredoka",sans-serif;padding:30px 10px;font-size:15px}
+footer .hearts{font-size:22px;letter-spacing:4px}
+
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.001s!important;animation-iteration-count:1!important}
+  html{scroll-behavior:auto}
+}
+:focus-visible{outline:3px solid var(--rose);outline-offset:2px;border-radius:8px}
+</style>
+</head>
+<body>
+<div class="dots" id="dots" aria-hidden="true"></div>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="balloon-row" aria-hidden="true">🎈🎀🎈</div>
+    <div class="eyebrow">You're invited to celebrate</div>
+    <h1>Nitya</h1>
+    <span class="turns">is turning ONE! 🎂</span>
+    <p class="sub">Snap a vintage photo strip with cute animal filters, play a few games,
+      and leave a little postcard wish for our favorite one-year-old.</p>
+    <nav class="chips" aria-label="Jump to section">
+      <a href="#booth">📸 Photobooth</a>
+      <a href="#music">🎵 Songs</a>
+      <a href="#games">🎲 Games</a>
+      <a href="#cards">💌 Postcards</a>
+    </nav>
+  </header>
+
+  <!-- PHOTOBOOTH -->
+  <section id="booth">
+    <h2>📸 Photobooth</h2>
+    <p class="lead">Pick a filter and it sticks to your face like magic — move around and it follows!
+      Snap three smiles for a funky photo strip you can download. Works on iPhone & Android,
+      and everything stays on your device.</p>
+
+    <div class="booth-stage" id="boothStage">
+      <video id="bvideo" autoplay playsinline muted></video>
+      <canvas id="trackCanvas" class="track-canvas" aria-hidden="true"></canvas>
+      <div class="placeholder" id="boothPlaceholder">
+        <div class="big">🐰</div>
+        <div>Tap “Start camera” to begin</div>
+      </div>
+      <div class="flash" id="boothFlash" aria-hidden="true"></div>
+    </div>
+
+    <div class="filter-picker" id="filterPicker" role="group" aria-label="Choose a filter"></div>
+
+    <div class="booth-controls">
+      <button class="btn" id="startCam">Start camera</button>
+      <button class="btn gold" id="snapBtn" disabled>Take strip ✨ (3 photos)</button>
+      <button class="btn ghost" id="flipCam" disabled>Flip camera 🔄</button>
+    </div>
+    <div class="note" id="boothNote">Tip: if the camera doesn’t appear, allow camera access in your browser. No photos are uploaded anywhere.</div>
+
+    <div class="strip-wrap" id="stripWrap"></div>
+  </section>
+
+  <!-- MUSIC -->
+  <section id="music">
+    <h2>🎵 Nitya's Favourite Songs</h2>
+    <p class="lead">Tap a song to hear its melody play on a gentle music box.
+      Sing and clap along — these are Nitya's two favourites!</p>
+    <div class="song-grid">
+      <button class="song-card" id="song-bus">
+        <div class="song-emoji">🚌</div>
+        <div class="song-title">The Wheels on the Bus</div>
+        <div class="song-sub">go round and round 🎶</div>
+        <div class="song-play">▶ Play melody</div>
+      </button>
+      <button class="song-card" id="song-happy">
+        <div class="song-emoji">👏</div>
+        <div class="song-title">If You're Happy</div>
+        <div class="song-sub">and you know it! 🎶</div>
+        <div class="song-play">▶ Play melody</div>
+      </button>
+    </div>
+    <div class="song-now" id="songNow">Pick a song to start the music box 🎀</div>
+    <div class="note">These are toy-piano melodies made just for the party — turn your volume up and sing along!</div>
+  </section>
+
+  <!-- GAMES -->
+  <section id="games">
+    <h2>🎲 Little Games</h2>
+    <p class="lead">Three tiny games for big and small hands. Tap a tab to play!</p>
+    <div class="game-tabs" role="tablist">
+      <button class="on" data-game="mem">🃏 Memory match</button>
+      <button data-game="bal">🎈 Pop balloons</button>
+      <button data-game="find">🧸 Find the toys</button>
+    </div>
+
+    <!-- memory -->
+    <div class="game-panel on" id="game-mem">
+      <div class="game-stat">Moves: <b id="memMoves">0</b> · Pairs found: <b id="memPairs">0</b>/8</div>
+      <div class="mem-grid" id="memGrid"></div>
+      <div class="win-msg" id="memWin"></div>
+      <div class="btn-row" style="justify-content:center;margin-top:16px">
+        <button class="btn ghost" id="memReset">New game</button>
+      </div>
+    </div>
+
+    <!-- balloons -->
+    <div class="game-panel" id="game-bal">
+      <div class="bal-namerow">
+        <input type="text" id="balName" maxlength="20" placeholder="Who's playing? (name)">
+      </div>
+      <div class="game-stat">Popped: <b id="balScore">0</b> · Time left: <b id="balTime">40</b>s</div>
+      <div class="balloon-stage" id="balStage"></div>
+      <div class="win-msg" id="balWin"></div>
+      <div class="btn-row" style="justify-content:center;margin-top:16px">
+        <button class="btn" id="balStart">Start popping!</button>
+      </div>
+      <div class="leaderboard" id="balBoard">
+        <h3>🏆 High Scores</h3>
+        <ol id="balBoardList"></ol>
+        <div class="lb-empty" id="balBoardEmpty">No scores yet — be the first champion! 🎈</div>
+      </div>
+    </div>
+
+    <!-- find toys -->
+    <div class="game-panel" id="game-find">
+      <div class="game-stat">Find these hidden toys:</div>
+      <div class="find-targets" id="findTargets"></div>
+      <div class="find-stage" id="findStage"></div>
+      <div class="win-msg" id="findWin"></div>
+      <div class="btn-row" style="justify-content:center;margin-top:16px">
+        <button class="btn ghost" id="findReset">Hide them again</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- POSTCARDS -->
+  <section id="cards">
+    <h2>💌 Birthday Postcards</h2>
+    <p class="lead">Leave Nitya a sweet message and a photo of you together. Your card appears
+      on the wall below for everyone to enjoy.</p>
+
+    <div class="pc-form">
+      <input type="text" id="pcName" maxlength="40" placeholder="Your name">
+      <textarea id="pcMsg" maxlength="280" placeholder="Write a wholesome birthday wish… 🎀"></textarea>
+      <label class="file" for="pcPhoto">📷 Add a photo (optional)
+        <input type="file" id="pcPhoto" accept="image/*">
+      </label>
+      <img class="pc-preview" id="pcPreview" alt="Your photo preview">
+      <button class="btn" id="pcAdd">Add my postcard 💕</button>
+      <div class="note" id="pcStorageNote"></div>
+    </div>
+
+    <div class="pc-grid" id="pcGrid"></div>
+    <div class="pc-empty" id="pcEmpty">No postcards yet — be the first to wish Nitya! 🎈</div>
+  </section>
+
+  <footer>
+    <div class="hearts">🎀 💕 🎂 💕 🎀</div>
+    Made with love for Nitya’s first birthday
+  </footer>
+</div>
+
+<!-- MediaPipe FaceMesh for on-device face tracking (loads from CDN; no data leaves the device) -->
+<script src="https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh@0.4.1633559619/face_mesh.js" crossorigin="anonymous"></script>
+<script>
+/* =========================================================
+   STORAGE LAYER
+   Default: saves on this device (localStorage), survives refresh.
+   To enable TRUE shared saving across all guests/devices,
+   create a free Firebase project and fill in the config below,
+   then set USE_FIREBASE = true. (Instructions in the README.)
+   ========================================================= */
+const USE_FIREBASE = false;
+const FIREBASE_CONFIG = {
+  // apiKey: "...", authDomain: "...", projectId: "...",
+  // storageBucket: "...", messagingSenderId: "...", appId: "..."
+};
+/* --- end config --- */
+
+const Store = {
+  async getCards(){
+    if(USE_FIREBASE) return await FB.getCards();
+    let all;
+    try{ all = JSON.parse(localStorage.getItem('nitya_cards')||'[]'); }catch(e){ return []; }
+    // ensure every card has a unique id (older cards saved before this feature won't)
+    let changed=false;
+    all.forEach((c,i)=>{
+      if(!c.id){ c.id='c'+(c.t||Date.now())+'_'+i+'_'+Math.random().toString(36).slice(2,7); changed=true; }
+    });
+    if(changed){ try{ localStorage.setItem('nitya_cards', JSON.stringify(all)); }catch(e){} }
+    return all;
+  },
+  async addCard(card){
+    if(USE_FIREBASE) return await FB.addCard(card);
+    const all = await this.getCards();
+    all.unshift(card);
+    localStorage.setItem('nitya_cards', JSON.stringify(all.slice(0,60)));
+  },
+  async deleteCard(id){
+    if(USE_FIREBASE) return await FB.deleteCard(id);
+    if(!id) return; // never delete on a missing id
+    const all = (await this.getCards()).filter(c=>c.id!==id);
+    localStorage.setItem('nitya_cards', JSON.stringify(all));
+  },
+  async getScores(){
+    if(USE_FIREBASE) return await FB.getScores();
+    try{ return JSON.parse(localStorage.getItem('nitya_scores')||'[]'); }catch(e){ return []; }
+  },
+  async addScore(entry){
+    if(USE_FIREBASE) return await FB.addScore(entry);
+    const all = await this.getScores();
+    all.push(entry);
+    all.sort((a,b)=>b.score-a.score);
+    localStorage.setItem('nitya_scores', JSON.stringify(all.slice(0,20)));
+  }
+};
+
+/* ---------- confetti dots ---------- */
+(function(){
+  const d=document.getElementById('dots');
+  const cols=['#ffd6e7','#ffb8d4','#e8b04b','#bfe6d4','#fff'];
+  for(let i=0;i<22;i++){
+    const s=document.createElement('span');
+    const sz=6+Math.random()*16;
+    s.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;
+      background:${cols[i%cols.length]};animation-delay:${Math.random()*14}s;
+      animation-duration:${10+Math.random()*8}s`;
+    d.appendChild(s);
+  }
+})();
+
+/* =========================================================
+   PHOTOBOOTH  —  face-tracked filters (MediaPipe FaceMesh)
+   Each filter = list of "parts". A part anchors to a face
+   landmark, with size relative to face width and an offset
+   measured in face-widths. Drawn live + baked into the strip.
+   anchor: 'foreheadL','foreheadR','noseTip','eyeL','eyeR',
+           'cheekL','cheekR','aboveHead','chin','mouth'
+   ========================================================= */
+const FILTERS=[
+  {id:'none', emoji:'🚫', parts:[]},
+  {id:'bunny', emoji:'🐰', parts:[
+    {e:'🐰',anchor:'foreheadL',size:.9,dx:-.05,dy:-.55,rot:-15},
+    {e:'🐰',anchor:'foreheadR',size:.9,dx:.05,dy:-.55,rot:15},
+    {e:'🌸',anchor:'cheekL',size:.3},{e:'🌸',anchor:'cheekR',size:.3},
+  ]},
+  {id:'cat', emoji:'🐱', parts:[
+    {e:'🔺',anchor:'foreheadL',size:.55,dx:-.02,dy:-.5,rot:-8},
+    {e:'🔺',anchor:'foreheadR',size:.55,dx:.02,dy:-.5,rot:8},
+    {e:'🐽',anchor:'noseTip',size:.34},
+    {e:'😺',anchor:'aboveHead',size:.7,dy:-.2},
+  ]},
+  {id:'dog', emoji:'🐶', parts:[
+    {e:'🐶',anchor:'foreheadL',size:.95,dx:-.1,dy:-.3,rot:-20},
+    {e:'🐶',anchor:'foreheadR',size:.95,dx:.1,dy:-.3,rot:20},
+    {e:'🐽',anchor:'noseTip',size:.36},
+    {e:'👅',anchor:'mouth',size:.4,dy:.25},
+  ]},
+  {id:'bear', emoji:'🐻', parts:[
+    {e:'🟤',anchor:'foreheadL',size:.6,dx:-.05,dy:-.55},
+    {e:'🟤',anchor:'foreheadR',size:.6,dx:.05,dy:-.55},
+    {e:'🐻',anchor:'noseTip',size:.4},
+  ]},
+  {id:'panda', emoji:'🐼', parts:[
+    {e:'⚫',anchor:'foreheadL',size:.5,dx:-.05,dy:-.55},
+    {e:'⚫',anchor:'foreheadR',size:.5,dx:.05,dy:-.55},
+    {e:'🐼',anchor:'noseTip',size:.42},
+  ]},
+  {id:'fox', emoji:'🦊', parts:[
+    {e:'🔺',anchor:'foreheadL',size:.55,dx:-.02,dy:-.5,rot:-10},
+    {e:'🔺',anchor:'foreheadR',size:.55,dx:.02,dy:-.5,rot:10},
+    {e:'🦊',anchor:'noseTip',size:.42},
+  ]},
+  {id:'deer', emoji:'🦌', parts:[
+    {e:'🦌',anchor:'aboveHead',size:1.0,dy:-.15},
+    {e:'🔴',anchor:'noseTip',size:.3},
+    {e:'🌸',anchor:'cheekL',size:.28},{e:'🌸',anchor:'cheekR',size:.28},
+  ]},
+  {id:'crown', emoji:'👑', parts:[
+    {e:'👑',anchor:'aboveHead',size:.85,dy:.05},
+    {e:'✨',anchor:'cheekL',size:.32},{e:'✨',anchor:'cheekR',size:.32},
+  ]},
+  {id:'party', emoji:'🥳', parts:[
+    {e:'🎉',anchor:'aboveHead',size:.8,dx:-.15,dy:0,rot:-20},
+    {e:'🎊',anchor:'aboveHead',size:.7,dx:.2,dy:.05,rot:20},
+    {e:'🕶️',anchor:'noseTip',size:.85,dy:-.25},
+  ]},
+  {id:'glasses', emoji:'🤓', parts:[
+    {e:'🤓',anchor:'noseTip',size:.95,dy:-.18},
+    {e:'🎀',anchor:'aboveHead',size:.5,dy:.1},
+  ]},
+  {id:'unicorn', emoji:'🦄', parts:[
+    {e:'🦄',anchor:'aboveHead',size:.75,dy:-.1},
+    {e:'🌈',anchor:'foreheadL',size:.5,dx:-.05,dy:-.45,rot:-20},
+    {e:'⭐',anchor:'cheekL',size:.3},{e:'⭐',anchor:'cheekR',size:.3},
+  ]},
+];
+let curFilter=FILTERS[1], stream=null, facing='user';
+const video=document.getElementById('bvideo');
+const trackCanvas=document.getElementById('trackCanvas');
+const placeholder=document.getElementById('boothPlaceholder');
+const snapBtn=document.getElementById('snapBtn');
+const flipBtn=document.getElementById('flipCam');
+
+/* ---- Face tracking state ---- */
+let faceMesh=null, lastFace=null, trackingReady=false, trackLoopOn=false;
+// smoothing so props don't jitter
+let smooth=null;
+
+// FaceMesh landmark indices we use
+const LM={ noseTip:1, foreheadTop:10, chin:152,
+  leftFaceEdge:234, rightFaceEdge:454,
+  leftEye:159, rightEye:386, leftCheek:50, rightCheek:280,
+  mouthTop:13, mouthBottom:14, leftTemple:127, rightTemple:356 };
+
+async function initFaceMesh(){
+  if(faceMesh || typeof FaceMesh==='undefined') return;
+  try{
+    faceMesh=new FaceMesh({locateFile:(f)=>`https://cdn.jsdelivr.net/npm/@mediapipe/face_mesh@0.4.1633559619/${f}`});
+    faceMesh.setOptions({maxNumFaces:1,refineLandmarks:false,
+      minDetectionConfidence:0.5,minTrackingConfidence:0.5});
+    faceMesh.onResults(onFaceResults);
+    trackingReady=true;
+  }catch(e){ trackingReady=false; }
+}
+function onFaceResults(res){
+  if(res.multiFaceLandmarks && res.multiFaceLandmarks.length){
+    lastFace=res.multiFaceLandmarks[0];
+  } else { lastFace=null; }
+}
+
+// compute face frame (center, width, angle) from landmarks in pixel space
+function faceFrame(lm, W, H){
+  const p=(i)=>({x:lm[i].x*W, y:lm[i].y*H});
+  const L=p(LM.leftFaceEdge), R=p(LM.rightFaceEdge);
+  const top=p(LM.foreheadTop), chin=p(LM.chin), nose=p(LM.noseTip);
+  const width=Math.hypot(R.x-L.x, R.y-L.y);
+  const angle=Math.atan2(R.y-L.y, R.x-L.x); // head tilt
+  return {
+    width, angle,
+    nose, top, chin,
+    eyeL:p(LM.leftEye), eyeR:p(LM.rightEye),
+    cheekL:p(LM.leftCheek), cheekR:p(LM.rightCheek),
+    templeL:p(LM.leftTemple), templeR:p(LM.rightTemple),
+    mouth:{x:(p(LM.mouthTop).x+p(LM.mouthBottom).x)/2, y:(p(LM.mouthTop).y+p(LM.mouthBottom).y)/2},
+    aboveHead:{x:top.x, y:top.y}
+  };
+}
+function smoothFrame(f){
+  if(!smooth){ smooth=f; return f; }
+  const a=0.4; // smoothing factor
+  const lerp=(o,n)=>({x:o.x+(n.x-o.x)*a, y:o.y+(n.y-o.y)*a});
+  smooth={
+    width:smooth.width+(f.width-smooth.width)*a,
+    angle:smooth.angle+(f.angle-smooth.angle)*a,
+    nose:lerp(smooth.nose,f.nose), top:lerp(smooth.top,f.top), chin:lerp(smooth.chin,f.chin),
+    eyeL:lerp(smooth.eyeL,f.eyeL), eyeR:lerp(smooth.eyeR,f.eyeR),
+    cheekL:lerp(smooth.cheekL,f.cheekL), cheekR:lerp(smooth.cheekR,f.cheekR),
+    templeL:lerp(smooth.templeL,f.templeL), templeR:lerp(smooth.templeR,f.templeR),
+    mouth:lerp(smooth.mouth,f.mouth), aboveHead:lerp(smooth.aboveHead,f.aboveHead)
+  };
+  return smooth;
+}
+
+// resolve a part's anchor point on the face frame
+function anchorPoint(frame, anchor){
+  switch(anchor){
+    case 'noseTip': return frame.nose;
+    case 'foreheadL': return frame.templeL;
+    case 'foreheadR': return frame.templeR;
+    case 'eyeL': return frame.eyeL;
+    case 'eyeR': return frame.eyeR;
+    case 'cheekL': return frame.cheekL;
+    case 'cheekR': return frame.cheekR;
+    case 'mouth': return frame.mouth;
+    case 'chin': return frame.chin;
+    case 'aboveHead': return {x:frame.top.x, y:frame.top.y-frame.width*0.55};
+    default: return frame.nose;
+  }
+}
+
+// Draw the current filter's parts onto a 2D context.
+// ctx must already be in the SAME orientation as the displayed/saved image.
+// frame is in the ctx's pixel space. If frame is null, draws centered fallback.
+function drawFilterParts(ctx, W, H, frame){
+  const f=curFilter; if(!f.parts || !f.parts.length) return;
+  ctx.save(); ctx.textAlign='center'; ctx.textBaseline='middle';
+  if(frame){
+    const fw=frame.width;
+    f.parts.forEach(part=>{
+      const ap=anchorPoint(frame, part.anchor);
+      const size=fw*(part.size||0.4);
+      const x=ap.x + (part.dx||0)*fw;
+      const y=ap.y + (part.dy||0)*fw;
+      ctx.save();
+      ctx.translate(x,y);
+      ctx.rotate(frame.angle + (part.rot||0)*Math.PI/180);
+      ctx.font=`${size}px serif`;
+      ctx.fillText(part.e, 0, 0);
+      ctx.restore();
+    });
+  } else {
+    // fallback: no face detected — place relative to frame center
+    const cx=W/2, fw=W*0.5, topY=H*0.28;
+    const fb={
+      width:fw, angle:0,
+      nose:{x:cx,y:H*0.5}, top:{x:cx,y:topY}, chin:{x:cx,y:H*0.72},
+      eyeL:{x:cx-fw*0.22,y:H*0.42}, eyeR:{x:cx+fw*0.22,y:H*0.42},
+      cheekL:{x:cx-fw*0.3,y:H*0.55}, cheekR:{x:cx+fw*0.3,y:H*0.55},
+      templeL:{x:cx-fw*0.42,y:H*0.34}, templeR:{x:cx+fw*0.42,y:H*0.34},
+      mouth:{x:cx,y:H*0.62}
+    };
+    f.parts.forEach(part=>{
+      const ap=anchorPoint(fb, part.anchor);
+      const size=fw*(part.size||0.4);
+      ctx.save();
+      ctx.translate(ap.x+(part.dx||0)*fw, ap.y+(part.dy||0)*fw);
+      ctx.rotate((part.rot||0)*Math.PI/180);
+      ctx.font=`${size}px serif`; ctx.fillText(part.e,0,0);
+      ctx.restore();
+    });
+  }
+  ctx.restore();
+}
+
+// live preview loop — draws onto the trackCanvas (mirrored to match video)
+function trackLoop(){
+  if(!trackLoopOn) return;
+  const vw=video.videoWidth, vh=video.videoHeight;
+  if(vw && vh){
+    if(trackCanvas.width!==vw){ trackCanvas.width=vw; trackCanvas.height=vh; }
+    const ctx=trackCanvas.getContext('2d');
+    ctx.clearRect(0,0,vw,vh);
+    // mirror to match the CSS-mirrored video
+    ctx.save(); ctx.translate(vw,0); ctx.scale(-1,1);
+    let frame=null;
+    if(lastFace){ frame=smoothFrame(faceFrame(lastFace, vw, vh)); }
+    else { smooth=null; }
+    drawFilterParts(ctx, vw, vh, frame);
+    ctx.restore();
+  }
+  requestAnimationFrame(trackLoop);
+}
+
+// feed frames to FaceMesh on a gentle cadence (every other frame)
+let sendTick=0;
+async function pumpFaceMesh(){
+  if(!trackLoopOn || !faceMesh) return;
+  if(video.readyState>=2 && (sendTick++%2===0)){
+    try{ await faceMesh.send({image:video}); }catch(e){}
+  }
+  setTimeout(pumpFaceMesh, 60);
+}
+(function buildPicker(){
+  const p=document.getElementById('filterPicker');
+  FILTERS.forEach((f,i)=>{
+    const b=document.createElement('button');
+    b.textContent=f.emoji; b.title=f.id;
+    if(f===curFilter) b.classList.add('on');
+    b.onclick=()=>{ curFilter=f; smooth=null;
+      [...p.children].forEach(c=>c.classList.remove('on')); b.classList.add('on'); };
+    p.appendChild(b);
+  });
+})();
+
+async function startCamera(){
+  try{
+    if(stream) stream.getTracks().forEach(t=>t.stop());
+    stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:facing,width:{ideal:720},height:{ideal:960}},audio:false});
+    video.srcObject=stream;
+    await video.play().catch(()=>{});
+    placeholder.style.display='none';
+    snapBtn.disabled=false; flipBtn.disabled=false;
+    document.getElementById('boothNote').textContent='Loading face filters… pick one and watch it stick! ✨';
+    // start tracking
+    await initFaceMesh();
+    if(!trackLoopOn){
+      trackLoopOn=true;
+      requestAnimationFrame(trackLoop);
+      pumpFaceMesh();
+    }
+    setTimeout(()=>{
+      document.getElementById('boothNote').textContent = trackingReady
+        ? 'Move around — your filter follows your face! Tap “Take strip”. 🎀'
+        : 'Filters are on (face tracking unavailable here, so they’ll sit centered). Tap “Take strip”. 🎀';
+    }, 1200);
+  }catch(e){
+    document.getElementById('boothNote').textContent='Couldn’t open the camera. Please allow camera access, or try a different browser.';
+  }
+}
+document.getElementById('startCam').onclick=startCamera;
+flipBtn.onclick=()=>{ facing = facing==='user'?'environment':'user'; startCamera(); };
+
+snapBtn.onclick=async()=>{
+  if(!stream) return;
+  snapBtn.disabled=true;
+  const shots=[];
+  for(let i=0;i<3;i++){
+    document.getElementById('boothNote').textContent=`Smile! Photo ${i+1} of 3…`;
+    await countdown(3);
+    flashAndShutter();
+    shots.push(capture());
+    await wait(350);
+  }
+  buildStrip(shots);
+  document.getElementById('boothNote').textContent='Strip ready! Tap “Download strip” to save it to your photos. 🎀';
+  snapBtn.disabled=false;
+};
+function wait(ms){ return new Promise(r=>setTimeout(r,ms)); }
+function flashAndShutter(){
+  const fl=document.getElementById('boothFlash');
+  fl.classList.remove('go'); void fl.offsetWidth; fl.classList.add('go');
+  shutterSound();
+}
+function shutterSound(){
+  try{
+    const ctx=getCtx(); if(ctx.state==='suspended') ctx.resume();
+    const t=ctx.currentTime;
+    // two quick clicks (mirror up / shutter) using short noise bursts
+    const burst=(start,dur,vol)=>{
+      const n=Math.floor(ctx.sampleRate*dur);
+      const buf=ctx.createBuffer(1,n,ctx.sampleRate);
+      const data=buf.getChannelData(0);
+      for(let i=0;i<n;i++){ data[i]=(Math.random()*2-1)*Math.pow(1-i/n,2); }
+      const src=ctx.createBufferSource(); src.buffer=buf;
+      const g=ctx.createGain(); g.gain.value=vol;
+      const hp=ctx.createBiquadFilter(); hp.type='highpass'; hp.frequency.value=1500;
+      src.connect(hp).connect(g).connect(ctx.destination);
+      src.start(start);
+    };
+    burst(t,0.045,0.5);        // mirror flip
+    burst(t+0.09,0.07,0.65);   // shutter close
+  }catch(e){ /* audio not available — ignore */ }
+}
+function countdown(n){
+  return new Promise(res=>{
+    let c=n;
+    placeholder.style.display='flex';
+    placeholder.innerHTML=`<div class="big">${c}</div>`;
+    const t=setInterval(()=>{ c--; if(c<=0){clearInterval(t);placeholder.style.display='none';res();}
+      else placeholder.innerHTML=`<div class="big">${c}</div>`; },700);
+  });
+}
+function capture(){
+  const w=video.videoWidth||720, h=video.videoHeight||960;
+  const c=document.createElement('canvas'); c.width=w; c.height=h;
+  const ctx=c.getContext('2d');
+  ctx.save(); ctx.translate(w,0); ctx.scale(-1,1); // mirror like the preview
+  ctx.drawImage(video,0,0,w,h);
+  let frame=null;
+  if(lastFace){ frame=faceFrame(lastFace, w, h); }
+  drawFilterParts(ctx, w, h, frame);
+  ctx.restore();
+  return c; // return the canvas for compositing
+}
+function buildStrip(shotCanvases){
+  // ----- compose one FUNKY strip image -----
+  const PW=600;                 // photo width inside the strip
+  const PAD=46;                 // border padding
+  const GAP=34;                 // gap between photos
+  const HEADER=150, FOOTER=190; // title + caption space
+  const ratio = shotCanvases[0].height/shotCanvases[0].width;
+  const PH = Math.round(PW*ratio);
+  const W = PW + PAD*2;
+  const H = HEADER + shotCanvases.length*PH + (shotCanvases.length-1)*GAP + FOOTER;
+
+  const c=document.createElement('canvas'); c.width=W; c.height=H;
+  const ctx=c.getContext('2d');
+
+  // funky diagonal candy gradient background
+  const bg=ctx.createLinearGradient(0,0,W,H);
+  bg.addColorStop(0,'#ffd6e7');
+  bg.addColorStop(.45,'#ff9ec7');
+  bg.addColorStop(.75,'#ff7eb6');
+  bg.addColorStop(1,'#ffb84d');
+  ctx.fillStyle=bg; ctx.fillRect(0,0,W,H);
+
+  // diagonal candy stripes (subtle, behind everything)
+  ctx.save();
+  ctx.globalAlpha=0.10; ctx.strokeStyle='#fff'; ctx.lineWidth=26;
+  for(let x=-H; x<W+H; x+=70){ ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x+H,H); ctx.stroke(); }
+  ctx.restore();
+
+  // scattered confetti dots + stars
+  const conf=['#ffffff','#ffe14d','#7ad7c4','#e26a9a','#a98bff'];
+  let seed=12345; const rnd=()=>{ seed=(seed*9301+49297)%233280; return seed/233280; };
+  for(let i=0;i<60;i++){
+    const x=rnd()*W, y=rnd()*H, s=4+rnd()*9;
+    ctx.fillStyle=conf[Math.floor(rnd()*conf.length)]; ctx.globalAlpha=0.55+rnd()*0.4;
+    if(rnd()>0.7){ drawStar(ctx,x,y,s,5); } else { ctx.beginPath(); ctx.arc(x,y,s/2,0,7); ctx.fill(); }
+  }
+  ctx.globalAlpha=1;
+
+  // chunky outlined header
+  ctx.textAlign='center';
+  ctx.lineJoin='round';
+  ctx.font='800 58px "Fredoka", Arial, sans-serif';
+  ctx.lineWidth=10; ctx.strokeStyle='#7a2c52'; ctx.strokeText('NITYA', W/2, 70);
+  ctx.fillStyle='#fff'; ctx.fillText('NITYA', W/2, 70);
+  ctx.font='800 34px "Fredoka", Arial, sans-serif';
+  ctx.lineWidth=7; ctx.strokeStyle='#7a2c52'; ctx.strokeText('★ is ONE! ★', W/2, 116);
+  ctx.fillStyle='#ffe14d'; ctx.fillText('★ is ONE! ★', W/2, 116);
+
+  // photos in playful tilted frames
+  const tilts=[-3, 2.5, -2, 3];
+  shotCanvases.forEach((sc,i)=>{
+    const y = HEADER + i*(PH+GAP);
+    const cx=PAD+PW/2, cy=y+PH/2;
+    ctx.save();
+    ctx.translate(cx,cy); ctx.rotate((tilts[i%tilts.length])*Math.PI/180); ctx.translate(-cx,-cy);
+    // colorful frame border
+    const frameCols=['#7ad7c4','#ffe14d','#a98bff','#ff7eb6'];
+    ctx.fillStyle=frameCols[i%frameCols.length];
+    roundRect(ctx, PAD-14, y-14, PW+28, PH+28, 22); ctx.fill();
+    ctx.fillStyle='#fff';
+    roundRect(ctx, PAD-7, y-7, PW+14, PH+14, 16); ctx.fill();
+    // photo
+    ctx.save(); roundRect(ctx, PAD, y, PW, PH, 12); ctx.clip();
+    drawCover(ctx, sc, PAD, y, PW, PH);
+    // light warm pop (less sepia, more vibrant)
+    ctx.globalCompositeOperation='soft-light';
+    ctx.fillStyle='rgba(255,160,200,0.12)'; ctx.fillRect(PAD,y,PW,PH);
+    ctx.restore();
+    ctx.restore();
+  });
+
+  // footer ribbon + text
+  const ribY=H-FOOTER+45;
+  ctx.save();
+  ctx.translate(W/2, ribY+50); ctx.rotate(-2*Math.PI/180);
+  ctx.fillStyle='#7a2c52';
+  roundRect(ctx, -W/2+24, -34, W-48, 70, 35); ctx.fill();
+  ctx.restore();
+  ctx.textAlign='center';
+  ctx.font='800 38px "Fredoka", Arial, sans-serif';
+  ctx.fillStyle='#fff';
+  ctx.save(); ctx.translate(W/2, ribY+50); ctx.rotate(-2*Math.PI/180);
+  ctx.fillText("🎀 Nitya's First Birthday 🎀", 0, 13); ctx.restore();
+  // birthday date (fixed)
+  ctx.font='600 22px "Fredoka", Arial, sans-serif'; ctx.fillStyle='#7a2c52';
+  ctx.fillText('21 June', W/2, H-22);
+
+  // ----- show it with a download button -----
+  const wrap=document.getElementById('stripWrap');
+  const dataUrl=c.toDataURL('image/png');
+  const card=document.createElement('div'); card.className='strip-card';
+  const img=new Image(); img.src=dataUrl; img.alt='Nitya birthday photo strip';
+  const dl=document.createElement('a');
+  dl.className='btn gold strip-dl'; dl.textContent='⬇ Download strip';
+  dl.href=dataUrl; dl.download=`nitya-photostrip-${Date.now()}.png`;
+  card.appendChild(img); card.appendChild(dl);
+  wrap.prepend(card);
+}
+
+// rounded rectangle path helper
+function roundRect(ctx,x,y,w,h,r){
+  ctx.beginPath();
+  ctx.moveTo(x+r,y);
+  ctx.arcTo(x+w,y,x+w,y+h,r);
+  ctx.arcTo(x+w,y+h,x,y+h,r);
+  ctx.arcTo(x,y+h,x,y,r);
+  ctx.arcTo(x,y,x+w,y,r);
+  ctx.closePath();
+}
+// five-point star helper
+function drawStar(ctx,cx,cy,r,points){
+  ctx.beginPath();
+  for(let i=0;i<points*2;i++){
+    const ang=(i*Math.PI)/points - Math.PI/2;
+    const rad=i%2?r*0.45:r;
+    ctx.lineTo(cx+Math.cos(ang)*rad, cy+Math.sin(ang)*rad);
+  }
+  ctx.closePath(); ctx.fill();
+}
+
+// draw a source canvas into a box using object-fit: cover
+function drawCover(ctx, src, dx, dy, dw, dh){
+  const sr=src.width/src.height, dr=dw/dh;
+  let sw,sh,sx,sy;
+  if(sr>dr){ sh=src.height; sw=sh*dr; sx=(src.width-sw)/2; sy=0; }
+  else     { sw=src.width;  sh=sw/dr; sx=0; sy=(src.height-sh)/2; }
+  ctx.drawImage(src, sx,sy,sw,sh, dx,dy,dw,dh);
+}
+
+/* =========================================================
+   GAME TABS
+   ========================================================= */
+document.querySelectorAll('.game-tabs button').forEach(b=>{
+  b.onclick=()=>{
+    document.querySelectorAll('.game-tabs button').forEach(x=>x.classList.remove('on'));
+    document.querySelectorAll('.game-panel').forEach(x=>x.classList.remove('on'));
+    b.classList.add('on');
+    document.getElementById('game-'+b.dataset.game).classList.add('on');
+    if(b.dataset.game==='bal'){/*ready*/}
+  };
+});
+
+/* ---------- MEMORY MATCH ---------- */
+const MEM_ICONS=['🐰','🐱','🐶','🐻','🐼','🦊','🎀','🎈'];
+let memFlipped=[], memMoves=0, memPairs=0, memLock=false;
+function initMemory(){
+  const grid=document.getElementById('memGrid');
+  grid.innerHTML=''; memFlipped=[]; memMoves=0; memPairs=0; memLock=false;
+  document.getElementById('memMoves').textContent=0;
+  document.getElementById('memPairs').textContent=0;
+  document.getElementById('memWin').textContent='';
+  const deck=[...MEM_ICONS,...MEM_ICONS].sort(()=>Math.random()-0.5);
+  deck.forEach(icon=>{
+    const card=document.createElement('div'); card.className='mem-card';
+    card.innerHTML=`<div class="face front">❓</div><div class="face back">${icon}</div>`;
+    card.dataset.icon=icon;
+    card.onclick=()=>flipMem(card);
+    grid.appendChild(card);
+  });
+}
+function flipMem(card){
+  if(memLock||card.classList.contains('flip')||card.classList.contains('done'))return;
+  card.classList.add('flip'); memFlipped.push(card);
+  if(memFlipped.length===2){
+    memMoves++; document.getElementById('memMoves').textContent=memMoves; memLock=true;
+    const [a,b]=memFlipped;
+    if(a.dataset.icon===b.dataset.icon){
+      setTimeout(()=>{a.classList.add('done');b.classList.add('done');memFlipped=[];memLock=false;
+        memPairs++; document.getElementById('memPairs').textContent=memPairs;
+        if(memPairs===8) document.getElementById('memWin').textContent='🎉 You found them all! Yay Nitya!';
+      },420);
+    }else{
+      setTimeout(()=>{a.classList.remove('flip');b.classList.remove('flip');memFlipped=[];memLock=false;},800);
+    }
+  }
+}
+document.getElementById('memReset').onclick=initMemory;
+initMemory();
+
+/* ---------- POP BALLOONS ---------- */
+let balScore=0, balTime=40, balTimer=null, balSpawn=null, balRAF=null, balActive=[], balRunning=false;
+const balEmojis=['🎈','🎀','🐰','🌸','💜','🧡'];
+const balBursts={'🎈':'🎉','🎀':'✨','🐰':'🥕','🌸':'🌟','💜':'✨','🧡':'⭐'};
+
+function startBalloons(){
+  const stage=document.getElementById('balStage');
+  stage.innerHTML=''; balScore=0; balTime=40; balActive=[]; balRunning=true;
+  document.getElementById('balScore').textContent=0;
+  document.getElementById('balTime').textContent=40;
+  document.getElementById('balWin').textContent='';
+  document.getElementById('balStart').textContent='Playing… 🎈';
+  document.getElementById('balStart').disabled=true;
+  clearInterval(balTimer); clearInterval(balSpawn); cancelAnimationFrame(balRAF);
+
+  balTimer=setInterval(()=>{
+    balTime--; document.getElementById('balTime').textContent=balTime;
+    if(balTime<=0) endBalloons();
+  },1000);
+
+  // gentle spawn: one balloon every ~1.4s
+  spawnBalloon();
+  balSpawn=setInterval(spawnBalloon, 1400);
+
+  let last=performance.now();
+  function step(now){
+    const dt=(now-last)/1000; last=now;
+    const stageH=stage.clientHeight;
+    for(let i=balActive.length-1;i>=0;i--){
+      const bal=balActive[i];
+      if(bal.popped) continue;
+      bal.y -= bal.speed*dt;                 // move up slowly (px/sec)
+      bal.el.style.top=bal.y+'px';
+      bal.sway+=dt*2;
+      bal.el.style.left=(bal.baseX+Math.sin(bal.sway)*14)+'px';
+      if(bal.y < -120){ bal.el.remove(); balActive.splice(i,1); }
+    }
+    if(balRunning) balRAF=requestAnimationFrame(step);
+  }
+  balRAF=requestAnimationFrame(step);
+}
+
+function spawnBalloon(){
+  if(!balRunning) return;
+  const stage=document.getElementById('balStage');
+  const emoji=balEmojis[Math.floor(Math.random()*balEmojis.length)];
+  const b=document.createElement('div'); b.className='balloon';
+  b.innerHTML=`<span class="balloon-face">${emoji}</span>`+
+              `<span class="pop-burst">${balBursts[emoji]||'🎉'}</span>`;
+  const stageW=stage.clientWidth, stageH=stage.clientHeight;
+  const baseX=10+Math.random()*(stageW-110);
+  const bal={ el:b, baseX, y:stageH, sway:Math.random()*6,
+              speed:38+Math.random()*22,   // slow: ~38-60 px/sec (was way faster)
+              popped:false };
+  b.style.left=baseX+'px';
+  b.style.top=bal.y+'px';
+  const pop=(e)=>{
+    e.preventDefault(); e.stopPropagation();
+    if(bal.popped) return;
+    bal.popped=true; b.classList.add('popped');
+    balScore++; document.getElementById('balScore').textContent=balScore;
+    popPing();
+    setTimeout(()=>{ b.remove(); const idx=balActive.indexOf(bal); if(idx>-1) balActive.splice(idx,1); },360);
+  };
+  b.addEventListener('click',pop);
+  b.addEventListener('touchstart',pop,{passive:false});
+  balActive.push(bal);
+  stage.appendChild(b);
+}
+
+// soft pop sound
+function popPing(){
+  try{
+    const ctx=getCtx(); if(ctx.state==='suspended') ctx.resume();
+    const t=ctx.currentTime;
+    const o=ctx.createOscillator(), g=ctx.createGain();
+    o.type='sine'; o.frequency.setValueAtTime(660,t); o.frequency.exponentialRampToValueAtTime(1100,t+0.08);
+    g.gain.setValueAtTime(0.22,t); g.gain.exponentialRampToValueAtTime(0.001,t+0.18);
+    o.connect(g).connect(ctx.destination); o.start(t); o.stop(t+0.2);
+  }catch(e){}
+}
+
+let balLastEntryId=null;
+async function endBalloons(){
+  balRunning=false;
+  clearInterval(balTimer); clearInterval(balSpawn); cancelAnimationFrame(balRAF);
+  document.querySelectorAll('#balStage .balloon').forEach(b=>b.remove());
+  balActive=[];
+  document.getElementById('balStart').textContent='Play again! 🎈';
+  document.getElementById('balStart').disabled=false;
+
+  if(balScore>0){
+    const name=(document.getElementById('balName').value.trim()||'Player').slice(0,20);
+    const entry={id:'s'+Date.now()+'_'+Math.random().toString(36).slice(2,6), name, score:balScore, t:Date.now()};
+    balLastEntryId=entry.id;
+    await Store.addScore(entry);
+    await renderBoard();
+    // is it a new top score?
+    const scores=await Store.getScores();
+    const isTop = scores.length && scores[0].id===entry.id;
+    document.getElementById('balWin').textContent = isTop
+      ? `🏆 New high score! ${name} popped ${balScore}! Wow!`
+      : `🎉 Great job ${name}! You popped ${balScore} balloon${balScore===1?'':'s'}!`;
+  } else {
+    balLastEntryId=null;
+    document.getElementById('balWin').textContent='Tap the balloons to pop them! Try again 🎈';
+  }
+}
+async function renderBoard(){
+  const list=document.getElementById('balBoardList');
+  const empty=document.getElementById('balBoardEmpty');
+  const scores=await Store.getScores();
+  empty.style.display=scores.length?'none':'block';
+  list.innerHTML='';
+  scores.slice(0,10).forEach(s=>{
+    const li=document.createElement('li');
+    if(s.id===balLastEntryId) li.classList.add('you');
+    li.innerHTML=`<span class="lb-name">${escapeHtml(s.name)}</span>`+
+                 `<span class="lb-score">${s.score} 🎈</span>`;
+    list.appendChild(li);
+  });
+}
+document.getElementById('balStart').onclick=startBalloons;
+renderBoard();
+
+/* ---------- FIND THE TOYS ---------- */
+const ALL_TOYS=['🧸','🦆','🚂','🪀','🎀','🪁','🥁','🧩'];
+let findTargets=[], findFound=0;
+function initFind(){
+  const stage=document.getElementById('findStage');
+  const tgtBox=document.getElementById('findTargets');
+  stage.innerHTML=''; tgtBox.innerHTML=''; findFound=0;
+  document.getElementById('findWin').textContent='';
+  findTargets=[...ALL_TOYS].sort(()=>Math.random()-0.5).slice(0,4);
+  // target chips
+  findTargets.forEach(t=>{
+    const c=document.createElement('div'); c.className='tgt'; c.dataset.toy=t; c.textContent=t;
+    tgtBox.appendChild(c);
+  });
+  // scatter all toys (decoys + targets), targets must appear
+  const scatter=[...findTargets];
+  while(scatter.length<10) scatter.push(ALL_TOYS[Math.floor(Math.random()*ALL_TOYS.length)]);
+  scatter.sort(()=>Math.random()-0.5).forEach(toy=>{
+    const el=document.createElement('div'); el.className='toy'; el.textContent=toy;
+    el.style.left=(5+Math.random()*85)+'%';
+    el.style.top=(8+Math.random()*78)+'%';
+    el.style.fontSize=(22+Math.random()*16)+'px';
+    el.onclick=()=>{
+      const chip=tgtBox.querySelector(`.tgt[data-toy="${toy}"]:not(.got)`);
+      if(chip){ chip.classList.add('got'); el.classList.add('found'); findFound++;
+        if(findFound===findTargets.length)
+          document.getElementById('findWin').textContent='🌟 You found every toy! Hooray!';
+      }
+    };
+    stage.appendChild(el);
+  });
+}
+document.getElementById('findReset').onclick=initFind;
+initFind();
+
+/* =========================================================
+   MUSIC BOX  (Web Audio — plays public-domain nursery melodies
+   as gentle synth notes; no copyrighted recordings used)
+   ========================================================= */
+const NOTE={ 'C4':261.63,'D4':293.66,'E4':329.63,'F4':349.23,'G4':392.00,
+  'A4':440.00,'B4':493.88,'C5':523.25,'D5':587.33,'E5':659.25,'G5':783.99,'rest':0 };
+
+// [note, beats]
+const MELODIES={
+  bus:{ // The Wheels on the Bus
+    tempo:132,
+    notes:[['C4',1],['F4',1],['F4',1],['F4',1],['A4',1.5],['C5',.5],['A4',1],['F4',1],
+           ['G4',2],['E4',1],['C4',1],['F4',2],['F4',1],['rest',1],
+           ['C4',1],['F4',1],['F4',1],['F4',1],['A4',1.5],['C5',.5],['A4',1],['F4',1],
+           ['G4',2],['C4',1],['C4',1],['F4',2],['F4',1],['rest',1]]
+  },
+  happy:{ // If You're Happy and You Know It
+    tempo:140,
+    notes:[['C4',1],['F4',1],['F4',.5],['F4',.5],['F4',1],['F4',1],['F4',1],['E4',1],['F4',1],['G4',2],
+           ['C4',1],['G4',1],['G4',.5],['G4',.5],['G4',1],['G4',1],['G4',1],['F4',1],['G4',1],['A4',2],
+           ['rest',.5],['A4',1],['A4',1],['A4',1],['A4',1],['B4',1],['C5',2],['rest',1]]
+  }
+};
+
+let audioCtx=null, musicStop=null;
+function getCtx(){ if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)(); return audioCtx; }
+
+function playNote(ctx,freq,start,dur){
+  if(freq===0) return;
+  const osc=ctx.createOscillator(), gain=ctx.createGain();
+  osc.type='triangle'; osc.frequency.value=freq;
+  // soft music-box envelope
+  gain.gain.setValueAtTime(0,start);
+  gain.gain.linearRampToValueAtTime(.22,start+0.02);
+  gain.gain.exponentialRampToValueAtTime(0.001,start+dur*0.95);
+  // a touch of bell shimmer
+  const osc2=ctx.createOscillator(), g2=ctx.createGain();
+  osc2.type='sine'; osc2.frequency.value=freq*2;
+  g2.gain.setValueAtTime(0,start);
+  g2.gain.linearRampToValueAtTime(.06,start+0.02);
+  g2.gain.exponentialRampToValueAtTime(0.001,start+dur*0.6);
+  osc.connect(gain).connect(ctx.destination);
+  osc2.connect(g2).connect(ctx.destination);
+  osc.start(start); osc.stop(start+dur);
+  osc2.start(start); osc2.stop(start+dur);
+}
+
+function stopMusic(){
+  document.querySelectorAll('.song-card').forEach(c=>c.classList.remove('playing'));
+  if(musicStop){ clearTimeout(musicStop); musicStop=null; }
+}
+
+function playSong(key,cardEl,label){
+  const ctx=getCtx();
+  if(ctx.state==='suspended') ctx.resume();
+  stopMusic();
+  cardEl.classList.add('playing');
+  document.getElementById('songNow').textContent='🎶 Now playing: '+label;
+  const m=MELODIES[key], beat=60/m.tempo;
+  let t=ctx.currentTime+0.05, total=0;
+  m.notes.forEach(([n,b])=>{ const dur=b*beat; playNote(ctx,NOTE[n],t,dur*0.92); t+=dur; total+=dur; });
+  musicStop=setTimeout(()=>{
+    cardEl.classList.remove('playing');
+    document.getElementById('songNow').textContent='Tap a song to play it again 🎀';
+  }, total*1000+200);
+}
+document.getElementById('song-bus').onclick=function(){
+  if(this.classList.contains('playing')){ stopMusic();
+    document.getElementById('songNow').textContent='Paused — tap to play again 🎀'; return; }
+  playSong('bus',this,'The Wheels on the Bus 🚌');
+};
+document.getElementById('song-happy').onclick=function(){
+  if(this.classList.contains('playing')){ stopMusic();
+    document.getElementById('songNow').textContent='Paused — tap to play again 🎀'; return; }
+  playSong('happy',this,"If You're Happy and You Know It 👏");
+};
+
+/* =========================================================
+   POSTCARDS
+   ========================================================= */
+const ROTS=['-2.5deg','1.8deg','-1.2deg','2.2deg','-2deg','1deg'];
+let pcPhotoData=null;
+const pcPreview=document.getElementById('pcPreview');
+
+document.getElementById('pcStorageNote').textContent = USE_FIREBASE
+  ? 'Postcards are shared with all guests. 💕'
+  : 'Postcards save on this device so they’ll be here when you come back. 💕';
+
+document.getElementById('pcPhoto').onchange=async(e)=>{
+  const file=e.target.files[0]; if(!file)return;
+  pcPhotoData=await shrinkImage(file,700);
+  pcPreview.src=pcPhotoData; pcPreview.style.display='block';
+};
+function shrinkImage(file,max){
+  return new Promise(res=>{
+    const r=new FileReader();
+    r.onload=()=>{ const img=new Image(); img.onload=()=>{
+      let{width:w,height:h}=img;
+      if(w>max||h>max){ const s=max/Math.max(w,h); w*=s; h*=s; }
+      const c=document.createElement('canvas'); c.width=w; c.height=h;
+      c.getContext('2d').drawImage(img,0,0,w,h);
+      res(c.toDataURL('image/jpeg',0.8));
+    }; img.src=r.result; };
+    r.readAsDataURL(file);
+  });
+}
+document.getElementById('pcAdd').onclick=async()=>{
+  const name=document.getElementById('pcName').value.trim()||'A friend';
+  const msg=document.getElementById('pcMsg').value.trim();
+  if(!msg && !pcPhotoData){ alert('Add a message or a photo first 💌'); return; }
+  const card={id:'c'+Date.now()+'_'+Math.random().toString(36).slice(2,7), name, msg, photo:pcPhotoData, t:Date.now()};
+  await Store.addCard(card);
+  document.getElementById('pcName').value='';
+  document.getElementById('pcMsg').value='';
+  document.getElementById('pcPhoto').value='';
+  pcPhotoData=null; pcPreview.style.display='none';
+  renderCards();
+};
+function escapeHtml(s){return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+async function renderCards(){
+  const grid=document.getElementById('pcGrid');
+  const cards=await Store.getCards();
+  document.getElementById('pcEmpty').style.display=cards.length?'none':'block';
+  grid.innerHTML='';
+  cards.forEach((c,i)=>{
+    const el=document.createElement('div'); el.className='postcard';
+    el.style.setProperty('--rot',ROTS[i%ROTS.length]);
+    el.innerHTML=
+      `<button class="pc-del" title="Remove this postcard" aria-label="Remove this postcard">×</button>`+
+      (c.photo?`<img src="${c.photo}" alt="Photo from ${escapeHtml(c.name)}">`:'')+
+      (c.msg?`<div class="msg">${escapeHtml(c.msg)}</div>`:'')+
+      `<div class="from">— ${escapeHtml(c.name)}</div>`;
+    const del=el.querySelector('.pc-del');
+    del.onclick=async()=>{
+      if(!confirm('Remove this postcard?')) return;
+      await Store.deleteCard(c.id);
+      renderCards();
+    };
+    grid.appendChild(el);
+  });
+}
+renderCards();
+
+/* =========================================================
+   FIREBASE adapter (only runs if USE_FIREBASE = true)
+   ========================================================= */
+const FB={
+  _db:null,
+  async _init(){
+    if(this._db) return;
+    const app=await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js');
+    const fs=await import('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js');
+    this._fs=fs; this._app=app.initializeApp(FIREBASE_CONFIG);
+    this._db=fs.getFirestore(this._app);
+  },
+  async getCards(){
+    await this._init();
+    const {collection,getDocs,query,orderBy}=this._fs;
+    const snap=await getDocs(query(collection(this._db,'cards'),orderBy('t','desc')));
+    // use the Firestore document id as the card id so delete is reliable
+    return snap.docs.map(d=>({...d.data(), id:d.id}));
+  },
+  async addCard(card){
+    await this._init();
+    const {collection,addDoc}=this._fs;
+    const data={...card}; delete data.id; // let Firestore assign the doc id
+    await addDoc(collection(this._db,'cards'), data);
+  },
+  async deleteCard(id){
+    await this._init();
+    const {doc,deleteDoc}=this._fs;
+    await deleteDoc(doc(this._db,'cards',id));
+  },
+  async getScores(){
+    await this._init();
+    const {collection,getDocs,query,orderBy,limit}=this._fs;
+    const snap=await getDocs(query(collection(this._db,'scores'),orderBy('score','desc'),limit(20)));
+    return snap.docs.map(d=>({...d.data(), id:d.id}));
+  },
+  async addScore(entry){
+    await this._init();
+    const {collection,addDoc}=this._fs;
+    const data={...entry}; delete data.id;
+    await addDoc(collection(this._db,'scores'), data);
+  }
+};
+</script>
+</body>
+</html>
