@@ -436,6 +436,11 @@ const Store = {
     all.unshift(card);
     localStorage.setItem('nitya_cards', JSON.stringify(all.slice(0,60)));
   },
+  // live updates when on Firebase; on localStorage just calls back once with current data
+  async subscribeCards(cb){
+    if(USE_FIREBASE) return await FB.subscribeCards(cb);
+    cb(await this.getCards());
+  },
   async deleteCard(id){
     if(USE_FIREBASE) return await FB.deleteCard(id);
     if(!id) return; // never delete on a missing id
@@ -1095,7 +1100,6 @@ async function renderBoard(){
   });
 }
 document.getElementById('balStart').onclick=startBalloons;
-renderBoard();
 
 /* ---------- FIND THE TOYS ---------- */
 const ALL_TOYS=['🧸','🦆','🚂','🪀','🎀','🪁','🥁','🧩'];
@@ -1239,22 +1243,34 @@ function shrinkImage(file,max){
   });
 }
 document.getElementById('pcAdd').onclick=async()=>{
+  const btn=document.getElementById('pcAdd');
   const name=document.getElementById('pcName').value.trim()||'A friend';
   const msg=document.getElementById('pcMsg').value.trim();
   if(!msg && !pcPhotoData){ alert('Add a message or a photo first 💌'); return; }
   const card={id:'c'+Date.now()+'_'+Math.random().toString(36).slice(2,7), name, msg, photo:pcPhotoData, t:Date.now()};
-  await Store.addCard(card);
-  document.getElementById('pcName').value='';
-  document.getElementById('pcMsg').value='';
-  document.getElementById('pcPhoto').value='';
-  pcPhotoData=null; pcPreview.style.display='none';
-  renderCards();
+  btn.disabled=true; const orig=btn.textContent; btn.textContent='Posting… 💕';
+  try{
+    await Store.addCard(card);
+    document.getElementById('pcName').value='';
+    document.getElementById('pcMsg').value='';
+    document.getElementById('pcPhoto').value='';
+    pcPhotoData=null; pcPreview.style.display='none';
+    if(!USE_FIREBASE) loadCardsOnce(); // Firebase updates the wall automatically via the live listener
+  }catch(e){
+    console.error('Could not post card:', e);
+    alert('Sorry, your postcard couldn’t be saved. Please check your connection and try again.');
+  }finally{
+    btn.disabled=false; btn.textContent=orig;
+  }
 };
 function escapeHtml(s){return (s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
-async function renderCards(){
+let pcLoaded=false;
+function paintCards(cards){
+  pcLoaded=true;
   const grid=document.getElementById('pcGrid');
-  const cards=await Store.getCards();
-  document.getElementById('pcEmpty').style.display=cards.length?'none':'block';
+  const empty=document.getElementById('pcEmpty');
+  empty.textContent='No postcards yet — be the first to wish Nitya! 🎈';
+  empty.style.display=cards.length?'none':'block';
   grid.innerHTML='';
   cards.forEach((c,i)=>{
     const el=document.createElement('div'); el.className='postcard';
@@ -1268,12 +1284,24 @@ async function renderCards(){
     del.onclick=async()=>{
       if(!confirm('Remove this postcard?')) return;
       await Store.deleteCard(c.id);
-      renderCards();
+      if(!USE_FIREBASE) loadCardsOnce(); // localStorage needs a manual refresh
     };
     grid.appendChild(el);
   });
 }
-renderCards();
+async function loadCardsOnce(){ paintCards(await Store.getCards()); }
+
+// Initial load: show a loading note, then subscribe to live updates.
+function initCards(){
+  const empty=document.getElementById('pcEmpty');
+  empty.textContent='Loading postcards… 🎀';
+  empty.style.display='block';
+  Store.subscribeCards(paintCards).catch(async (e)=>{ // fires immediately + on every change
+    console.error('Could not load postcards:', e);
+    try{ await loadCardsOnce(); }
+    catch(_){ empty.textContent='Couldn’t load postcards. Please refresh the page.'; }
+  });
+}
 
 /* =========================================================
    FIREBASE adapter (only runs if USE_FIREBASE = true)
@@ -1282,8 +1310,19 @@ const FB={
   _db:null,
   async _init(){
     if(this._db) return;
-    const app=await import('https://www.gstatic.com/firebasejs/12.14.0/firebase-app.js');
-    const fs=await import('https://www.gstatic.com/firebasejs/12.14.0/firebase-firestore.js');
+    // Try several known-good SDK versions in order; use whichever loads.
+    const versions=['10.12.2','10.14.1','11.0.2','12.14.0'];
+    let app=null, fs=null, lastErr=null;
+    for(const v of versions){
+      try{
+        app=await import(`https://www.gstatic.com/firebasejs/${v}/firebase-app.js`);
+        fs =await import(`https://www.gstatic.com/firebasejs/${v}/firebase-firestore.js`);
+        break;
+      }catch(e){ lastErr=e; app=null; fs=null; }
+    }
+    if(!app || !fs){
+      throw new Error('Could not load Firebase from the CDN. '+(lastErr&&lastErr.message||''));
+    }
     this._fs=fs; this._app=app.initializeApp(FIREBASE_CONFIG);
     this._db=fs.getFirestore(this._app);
   },
@@ -1293,6 +1332,14 @@ const FB={
     const snap=await getDocs(query(collection(this._db,'cards'),orderBy('t','desc')));
     // use the Firestore document id as the card id so delete is reliable
     return snap.docs.map(d=>({...d.data(), id:d.id}));
+  },
+  // live updates: calls cb(cards) immediately with existing data, then on every change
+  async subscribeCards(cb){
+    await this._init();
+    const {collection,query,orderBy,onSnapshot}=this._fs;
+    onSnapshot(query(collection(this._db,'cards'),orderBy('t','desc')), (snap)=>{
+      cb(snap.docs.map(d=>({...d.data(), id:d.id})));
+    }, (err)=>{ console.error('Firestore listen error:', err); });
   },
   async addCard(card){
     await this._init();
@@ -1318,6 +1365,15 @@ const FB={
     await addDoc(collection(this._db,'scores'), data);
   }
 };
+
+/* =========================================================
+   STARTUP  — run only after the whole script has loaded,
+   so every const (Store, FB) is fully initialized before use.
+   ========================================================= */
+window.addEventListener('load', ()=>{
+  initCards();
+  renderBoard();
+});
 </script>
 </body>
 </html>
